@@ -5,7 +5,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Example Component</div>
 
-                    <div class="panel-body">
+                    <div v-if="seen" class="panel-body">
                         I'm an example component!
                     </div>
                 </div>
@@ -18,6 +18,15 @@
     export default {
         mounted() {
             console.log('Component mounted.')
-        }
+        },
+        data: () => ({
+            seen: 0,
+            show: false,
+            canSuccess: true,
+            duration: 3000,
+            height: '2px',
+            color: '#77b6ff',
+            failedColor: 'red'
+        }),
     }
 </script>

@@ -3,12 +3,8 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div v-if="show" class="panel-heading">Example Component class</div>
+                    <div v-if="show" class="panel-heading">This is my Home Component</div>
                 </div>
-                <ul>
-                    <li v-if="items" v-for="item in items">{{item.name}}</li>
-                    <li v-else>Nothing to show</li>
-                </ul>
             </div>
         </div>
     </div>
@@ -16,13 +12,14 @@
 
 <script>
     export default {
-        el: "#app",
         mounted() {
             console.log('Component mounted.')
         },
         data: () => ({
-            show: true,
-            items: [{name: 'ololo'}, {name: 'trololo'}]
+            show: true
         }),
+        components: {
+
+        }
     }
 </script>

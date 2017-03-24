@@ -13,11 +13,53 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', require('./components/Example.vue'));
+import Index from './components/Index.vue';
+import TopMenu from './components/TopMenu.vue';
 
-const app = new Vue({
-    el: '#app',
-    data: {
-        seen: true
+let app = new Vue({
+    el: "#app",
+    components: {
+        Index, TopMenu
     }
 });
+// var app = new Vue(require('./components/Home.vue'));
+// Vue.component('select2', {
+//     props: ['options', 'value'],
+//     template: '#select2-template',
+//     mounted: function () {
+//         var vm = this
+//         $(this.$el)
+//             .val(this.value)
+//             // init select2
+//             .select2({ data: this.options })
+//             // emit event on change.
+//             .on('change', function () {
+//                 vm.$emit('input', this.value)
+//             })
+//     },
+//     watch: {
+//         value: function (value) {
+//             // update value
+//             $(this.$el).val(value)
+//         },
+//         options: function (options) {
+//             // update options
+//             $(this.$el).select2({ data: options })
+//         }
+//     },
+//     destroyed: function () {
+//         $(this.$el).off().select2('destroy')
+//     }
+// })
+//
+// var vm = new Vue({
+//     el: '#el',
+//     template: '#demo-template',
+//     data: {
+//         selected: 0,
+//         options: [
+//             { id: 1, text: 'Hello' },
+//             { id: 2, text: 'World' }
+//         ]
+//     }
+// })

@@ -32,7 +32,7 @@
 
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                Ololo Trololo
+                                Test
                             </li>
                         </ul>
                     </li>

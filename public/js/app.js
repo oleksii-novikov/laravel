@@ -12160,6 +12160,8 @@ module.exports = function spread(callback) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__User_Form_vue__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__User_Form_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__User_Form_vue__);
 //
 //
 //
@@ -12172,6 +12174,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = {
     mounted: function mounted() {
@@ -12183,7 +12192,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             show: true
         };
     },
-    components: {}
+    components: {
+        UserForm: __WEBPACK_IMPORTED_MODULE_0__User_Form_vue___default.a
+    }
 };
 
 /***/ }),
@@ -31913,7 +31924,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "role": "menu"
     }
-  }, [_c('li', [_vm._v("\n                            Ololo Trololo\n                        ")])])
+  }, [_c('li', [_vm._v("\n                            Ololo\n                        ")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -31938,7 +31949,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "panel panel-default"
   }, [(_vm.show) ? _c('div', {
     staticClass: "panel-heading"
-  }, [_vm._v("This is my Home Component")]) : _vm._e()])])])])
+  }, [_vm._v("This is my Home Component")]) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [_c('user-form')], 1)]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-8 col-md-offset-2"
+  })])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -43522,6 +43537,247 @@ module.exports = function(module) {
 __webpack_require__(11);
 module.exports = __webpack_require__(12);
 
+
+/***/ }),
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = {
+    name: 'user-form',
+    mounted: function mounted() {
+        console.log('Component Form mounted.');
+    },
+    data: function data() {
+        return {
+            user: {
+                email: '',
+                password: '',
+                age: ''
+            },
+            users: [{
+                email: 'ololo@mail.com',
+                password: '1231231',
+                age: 25
+            }, {
+                email: 'trololo@mail.com',
+                password: '1231231',
+                age: 26
+            }, {
+                email: 'bololo@mail.com',
+                password: '1231231',
+                age: 18
+            }]
+        };
+    },
+
+    methods: {
+        submit: function submit(e) {
+            e.preventDefault();
+            console.log('submit is clicked');
+        }
+    }
+};
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(9)(
+  /* script */
+  __webpack_require__(52),
+  /* template */
+  __webpack_require__(54),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/home/hunter/projects/laravel/resources/assets/js/components/User/Form.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Form.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4c594617", Component.options)
+  } else {
+    hotAPI.reload("data-v-4c594617", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('form', {
+    staticClass: "form-horizontal",
+    attrs: {
+      "role": "form",
+      "method": "POST"
+    },
+    on: {
+      "submit": _vm.submit
+    }
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "col-md-4 control-label",
+    attrs: {
+      "for": "email"
+    }
+  }, [_vm._v("E-Mail Address")]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-6"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.user.email),
+      expression: "user.email"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "email",
+      "type": "email",
+      "required": "required",
+      "autofocus": "autofocus"
+    },
+    domProps: {
+      "value": (_vm.user.email)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.user.email = $event.target.value
+      }
+    }
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "col-md-4 control-label",
+    attrs: {
+      "for": "password"
+    }
+  }, [_vm._v("Password")]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-6"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.user.password),
+      expression: "user.password"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "password",
+      "type": "password",
+      "required": "required"
+    },
+    domProps: {
+      "value": (_vm.user.password)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.user.password = $event.target.value
+      }
+    }
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "col-md-4 control-label",
+    attrs: {
+      "for": "age"
+    }
+  }, [_vm._v("Age")]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-6"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.user.age),
+      expression: "user.age"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "age",
+      "type": "text",
+      "required": "required",
+      "autofocus": "autofocus"
+    },
+    domProps: {
+      "value": (_vm.user.age)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.user.age = $event.target.value
+      }
+    }
+  })])]), _vm._v(" "), _vm._m(0)])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "form-group"
+  }, [_c('div', {
+    staticClass: "col-md-8 col-md-offset-4"
+  }, [_c('button', {
+    staticClass: "btn btn-primary",
+    attrs: {
+      "type": "submit"
+    }
+  }, [_vm._v("Create")])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-4c594617", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

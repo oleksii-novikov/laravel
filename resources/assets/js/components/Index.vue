@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="col-md-8 col-md-offset-2">
-
+                <user-list></user-list>
             </div>
         </div>
     </div>
@@ -18,6 +18,8 @@
 
 <script>
     import UserForm from './User/Form.vue';
+    import UserList from './User/List.vue';
+
     export default {
         mounted() {
             console.log('Component mounted.')
@@ -26,7 +28,7 @@
             show: true
         }),
         components: {
-            UserForm
+            UserForm, UserList
         }
     }
 </script>

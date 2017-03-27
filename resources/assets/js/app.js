@@ -15,6 +15,9 @@ require('./bootstrap');
 
 import Index from './components/Index.vue';
 import TopMenu from './components/TopMenu.vue';
+import VueResource from 'vue-resource';
+
+Vue.use(VueResource);
 
 let app = new Vue({
     el: "#app",

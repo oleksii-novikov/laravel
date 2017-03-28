@@ -14,6 +14,7 @@ require('./bootstrap');
  */
 
 import Index from './components/Index.vue';
+import Users from './components/Users.vue';
 import TopMenu from './components/TopMenu.vue';
 import VueResource from 'vue-resource';
 import VueRouter from 'vue-router';
@@ -23,7 +24,8 @@ Vue.use(VueResource);
 Vue.http.headers.common['X-CSRF-TOKEN', Laravel.csrfToken];
 
 const routes = [
-    {path: '/', component: Index, name: 'index'}
+    {path: '/', component: Index, name: 'index'},
+    {path: '/users', component: Users, name: 'users'}
 ];
 const router = new VueRouter({
     mode: 'history',

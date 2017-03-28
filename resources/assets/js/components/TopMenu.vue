@@ -16,10 +16,10 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     &nbsp;<li>
-                        <a href="/">Vue</a>
+                        <router-link to="/">Index</router-link>
                     </li>
                     <li>
-                        <a href="/users">Users</a>
+                        <router-link :to="'users'">Users</router-link>
                     </li>
                 </ul>
 

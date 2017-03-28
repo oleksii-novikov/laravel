@@ -24,7 +24,6 @@
             console.log('Component mounted.')
         },
         data: () => ({
-            show: true,
             users: []
         }),
         methods: {

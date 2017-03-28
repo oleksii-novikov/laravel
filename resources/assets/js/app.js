@@ -13,11 +13,11 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import Index from './components/Index.vue';
-import Users from './components/Users.vue';
-import TopMenu from './components/TopMenu.vue';
 import VueResource from 'vue-resource';
 import VueRouter from 'vue-router';
+
+import Index from './components/Index.vue';
+import Users from './components/Users.vue';
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
@@ -33,10 +33,7 @@ const router = new VueRouter({
 });
 
 let app = new Vue({
-    router,
-    components: {
-        Index, TopMenu
-    }
+    router
 }).$mount("#app");
 
 // let app = new Vue({

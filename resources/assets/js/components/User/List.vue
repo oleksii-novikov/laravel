@@ -14,9 +14,6 @@
         mounted() {
             console.log('Component List mounted.')
         },
-        components: { User },
-        methods: {
-
-        }
+        components: { User }
     }
 </script>

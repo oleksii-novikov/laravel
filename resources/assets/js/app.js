@@ -16,15 +16,33 @@ require('./bootstrap');
 import Index from './components/Index.vue';
 import TopMenu from './components/TopMenu.vue';
 import VueResource from 'vue-resource';
+import VueRouter from 'vue-router';
 
+Vue.use(VueRouter);
 Vue.use(VueResource);
+Vue.http.headers.common['X-CSRF-TOKEN', Laravel.csrfToken];
+
+const routes = [
+    {path: '/', component: Index, name: 'index'}
+];
+const router = new VueRouter({
+    mode: 'history',
+    routes
+});
 
 let app = new Vue({
-    el: "#app",
+    router,
     components: {
         Index, TopMenu
     }
-});
+}).$mount("#app");
+
+// let app = new Vue({
+//     el: "#app",
+//     components: {
+//         Index, TopMenu
+//     }
+// });
 // var app = new Vue(require('./components/Home.vue'));
 // Vue.component('select2', {
 //     props: ['options', 'value'],

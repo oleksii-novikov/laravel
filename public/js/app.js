@@ -11243,6 +11243,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_TopMenu_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_TopMenu_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_resource__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_resource___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue_resource__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_router__ = __webpack_require__(43);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -11262,14 +11263,30 @@ __webpack_require__(34);
 
 
 
+
+Vue.use(__WEBPACK_IMPORTED_MODULE_3_vue_router__["default"]);
 Vue.use(__WEBPACK_IMPORTED_MODULE_2_vue_resource___default.a);
+Vue.http.headers.common[('X-CSRF-TOKEN', Laravel.csrfToken)];
+
+var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_0__components_Index_vue___default.a, name: 'index' }];
+var router = new __WEBPACK_IMPORTED_MODULE_3_vue_router__["default"]({
+    mode: 'history',
+    routes: routes
+});
 
 var app = new Vue({
-  el: "#app",
-  components: {
-    Index: __WEBPACK_IMPORTED_MODULE_0__components_Index_vue___default.a, TopMenu: __WEBPACK_IMPORTED_MODULE_1__components_TopMenu_vue___default.a
-  }
-});
+    router: router,
+    components: {
+        Index: __WEBPACK_IMPORTED_MODULE_0__components_Index_vue___default.a, TopMenu: __WEBPACK_IMPORTED_MODULE_1__components_TopMenu_vue___default.a
+    }
+}).$mount("#app");
+
+// let app = new Vue({
+//     el: "#app",
+//     components: {
+//         Index, TopMenu
+//     }
+// });
 // var app = new Vue(require('./components/Home.vue'));
 // Vue.component('select2', {
 //     props: ['options', 'value'],
@@ -12308,30 +12325,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             user: {
-                email: '',
-                password: '',
-                age: ''
-            },
-            users: [{
-                email: 'ololo@mail.com',
-                password: '1231231',
-                age: 25
-            }, {
-                email: 'trololo@mail.com',
-                password: '1231231',
-                age: 26
-            }, {
-                email: 'bololo@mail.com',
-                password: '1231231',
-                age: 18
-            }]
+                email: 'hunter@nix.com',
+                password: 'password',
+                name: 'hunter'
+            }
         };
     },
 
     methods: {
-        submit: function submit(e) {
-            e.preventDefault();
-            console.log('submit is clicked');
+        create: function create() {
+            var _this = this;
+
+            this.$http.post('/api/users', this.user).then(function (response) {
+                console.log(_this.user);
+            }, function () {
+                console.log('error');
+                _this.$emit('usercreated');
+            });
         }
     }
 };
@@ -31982,9 +31992,44 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "method": "POST"
     },
     on: {
-      "submit": _vm.submit
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.create($event)
+      }
     }
   }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "col-md-4 control-label",
+    attrs: {
+      "for": "name"
+    }
+  }, [_vm._v("Name")]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-6"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.user.name),
+      expression: "user.name"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "name",
+      "type": "text",
+      "required": "required",
+      "autofocus": "autofocus"
+    },
+    domProps: {
+      "value": (_vm.user.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.user.name = $event.target.value
+      }
+    }
+  })])]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
   }, [_c('label', {
     staticClass: "col-md-4 control-label",
@@ -32045,38 +32090,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.user.password = $event.target.value
-      }
-    }
-  })])]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "col-md-4 control-label",
-    attrs: {
-      "for": "age"
-    }
-  }, [_vm._v("Age")]), _vm._v(" "), _c('div', {
-    staticClass: "col-md-6"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.user.age),
-      expression: "user.age"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "id": "age",
-      "type": "text",
-      "required": "required",
-      "autofocus": "autofocus"
-    },
-    domProps: {
-      "value": (_vm.user.age)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.user.age = $event.target.value
       }
     }
   })])]), _vm._v(" "), _vm._m(0)])
@@ -43794,6 +43807,8 @@ module.exports = __webpack_require__(12);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__User_vue__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__User_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__User_vue__);
 //
 //
 //
@@ -43809,41 +43824,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         console.log('Component List mounted.');
     },
+
+    components: { User: __WEBPACK_IMPORTED_MODULE_0__User_vue___default.a },
     data: function data() {
         return {
-            user: {
-                email: '',
-                password: '',
-                age: ''
-            },
-            users: [
-                //                    {
-                //                        email: 'ololo@mail.com',
-                //                        password: '1231231',
-                //                        age: 25
-                //                    },
-                //                    {
-                //                        email: 'trololo@mail.com',
-                //                        password: '1231231',
-                //                        age: 26
-                //                    },
-                //                    {
-                //                        email: 'bololo@mail.com',
-                //                        password: '1231231',
-                //                        age: 18
-                //                    },
-            ]
+            users: []
         };
     },
 
-    methods: {},
-    created: function created() {
-        var _this = this;
+    methods: {
+        fetchUsers: function fetchUsers() {
+            var _this = this;
 
-        this.$http.get('https://jsonplaceholder.typicode.com/users').then(function (response) {
-            console.log(response);
-            _this.users = response.body;
-        });
+            this.$http.get('/api/users').then(function (response) {
+                console.log(response);
+                _this.users = response.data.users;
+            });
+        }
+    },
+    created: function created() {
+        this.fetchUsers();
     }
 };
 
@@ -43889,7 +43889,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "list"
   }, [(_vm.users.length > 0) ? _c('ul', _vm._l((_vm.users), function(user) {
-    return _c('li', [_vm._v(_vm._s(user.email))])
+    return _c('user', {
+      attrs: {
+        "user": user
+      }
+    })
   })) : _c('div', [_vm._v("There is no users")])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
@@ -45440,6 +45444,72 @@ module.exports = plugin;
 /***/ (function(module, exports) {
 
 /* (ignored) */
+
+/***/ }),
+/* 60 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = {
+    props: ['user'],
+    mounted: function mounted() {
+        console.log('Component User mounted.');
+    }
+};
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(3)(
+  /* script */
+  __webpack_require__(60),
+  /* template */
+  __webpack_require__(62),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/home/hunter/projects/laravel/resources/assets/js/components/User/User.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] User.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-203b499e", Component.options)
+  } else {
+    hotAPI.reload("data-v-203b499e", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('li', [_vm._v(_vm._s(_vm.user.email) + " - " + _vm._s(_vm.user.name))])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-203b499e", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

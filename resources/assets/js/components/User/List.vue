@@ -1,53 +1,35 @@
 <template>
     <div class="list">
         <ul v-if="users.length > 0">
-            <li v-for="user in users">{{user.email}}</li>
+            <user v-for="user in users" v-bind:user="user"></user>
         </ul>
         <div v-else>There is no users</div>
     </div>
 </template>
 <script>
-
+    import User from './User.vue';
     export default {
         name: 'user-list',
         mounted() {
             console.log('Component List mounted.')
         },
+        components: { User },
         data() {
             return {
-                user: {
-                    email: '',
-                    password: '',
-                    age: ''
-                },
-                users:[
-//                    {
-//                        email: 'ololo@mail.com',
-//                        password: '1231231',
-//                        age: 25
-//                    },
-//                    {
-//                        email: 'trololo@mail.com',
-//                        password: '1231231',
-//                        age: 26
-//                    },
-//                    {
-//                        email: 'bololo@mail.com',
-//                        password: '1231231',
-//                        age: 18
-//                    },
-                ]
+                users: []
             }
         },
         methods: {
-
+            fetchUsers() {
+                this.$http.get('/api/users')
+                        .then(response => {
+                            console.log(response);
+                            this.users = response.data.users;
+                        })
+            }
         },
         created() {
-            this.$http.get('https://jsonplaceholder.typicode.com/users')
-                    .then((response) => {
-                        console.log(response);
-                        this.users = response.body;
-                    })
+            this.fetchUsers();
         }
     }
 </script>

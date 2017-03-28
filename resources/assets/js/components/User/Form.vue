@@ -1,5 +1,5 @@
 <template>
-    <form role="form" method="POST" v-on:submit.prevent="create" class="form-horizontal">
+    <form role="form" method="POST" v-on:submit.prevent="submit" class="form-horizontal">
         <div class="form-group">
             <label for="name" class="col-md-4 control-label">Name</label>
             <div class="col-md-6">
@@ -33,21 +33,15 @@
         data() {
             return {
                 user: {
-                    email: 'hunter@nix.com',
+                    email: 'hunter4@nix.com',
                     password: 'password',
-                    name: 'hunter'
+                    name: 'hunter4'
                 }
             }
         },
         methods: {
-            create() {
-                this.$http.post('/api/users', this.user)
-                        .then(response => {
-                            console.log(this.user);
-                        },() => {
-                            console.log('error');
-                            this.$emit('usercreated');
-                        });
+            submit() {
+                this.$emit('formSubmit', this.user);
             }
         }
     }

@@ -12215,11 +12215,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            show: true
+            show: true,
+            users: []
         };
+    },
+    methods: {
+        processForm: function processForm(formData) {
+            var _this = this;
+
+            this.$http.post('/api/users', formData).then(function (response) {
+                _this.users.push(response.data.user);
+            }, function () {
+                console.log('error');
+            });
+        },
+        fetchUsers: function fetchUsers() {
+            var _this2 = this;
+
+            this.$http.get('/api/users').then(function (response) {
+                console.log(response);
+                _this2.users = response.data.users;
+            });
+        }
     },
     components: {
         UserForm: __WEBPACK_IMPORTED_MODULE_0__User_Form_vue___default.a, UserList: __WEBPACK_IMPORTED_MODULE_1__User_List_vue___default.a
+    },
+    created: function created() {
+        this.fetchUsers();
     }
 };
 
@@ -12325,23 +12348,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             user: {
-                email: 'hunter@nix.com',
+                email: 'hunter4@nix.com',
                 password: 'password',
-                name: 'hunter'
+                name: 'hunter4'
             }
         };
     },
 
     methods: {
-        create: function create() {
-            var _this = this;
-
-            this.$http.post('/api/users', this.user).then(function (response) {
-                console.log(_this.user);
-            }, function () {
-                console.log('error');
-                _this.$emit('usercreated');
-            });
+        submit: function submit() {
+            this.$emit('formSubmit', this.user);
         }
     }
 };
@@ -31994,7 +32010,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "submit": function($event) {
         $event.preventDefault();
-        _vm.create($event)
+        _vm.submit($event)
       }
     }
   }, [_c('div', {
@@ -32206,9 +32222,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "panel-heading"
   }, [_vm._v("This is my Home Component")]) : _vm._e()]), _vm._v(" "), _c('div', {
     staticClass: "panel-body"
-  }, [_c('user-form')], 1)]), _vm._v(" "), _c('div', {
+  }, [_c('user-form', {
+    on: {
+      "formSubmit": _vm.processForm
+    }
+  })], 1)]), _vm._v(" "), _c('div', {
     staticClass: "col-md-8 col-md-offset-2"
-  }, [_c('user-list')], 1)])])
+  }, [_c('user-list', {
+    attrs: {
+      "users": _vm.users
+    }
+  })], 1)])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -43821,30 +43845,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = {
     name: 'user-list',
+    props: ['users'],
     mounted: function mounted() {
         console.log('Component List mounted.');
     },
 
     components: { User: __WEBPACK_IMPORTED_MODULE_0__User_vue___default.a },
-    data: function data() {
-        return {
-            users: []
-        };
-    },
-
-    methods: {
-        fetchUsers: function fetchUsers() {
-            var _this = this;
-
-            this.$http.get('/api/users').then(function (response) {
-                console.log(response);
-                _this.users = response.data.users;
-            });
-        }
-    },
-    created: function created() {
-        this.fetchUsers();
-    }
+    methods: {}
 };
 
 /***/ }),

@@ -6,11 +6,11 @@
                     <div v-if="show" class="panel-heading">This is my Home Component</div>
                 </div>
                 <div class="panel-body">
-                    <user-form></user-form>
+                    <user-form v-on:formSubmit="processForm"></user-form>
                 </div>
             </div>
             <div class="col-md-8 col-md-offset-2">
-                <user-list></user-list>
+                <user-list v-bind:users="users"></user-list>
             </div>
         </div>
     </div>
@@ -25,10 +25,31 @@
             console.log('Component mounted.')
         },
         data: () => ({
-            show: true
+            show: true,
+            users: []
         }),
+        methods: {
+            processForm(formData) {
+                this.$http.post('/api/users', formData)
+                        .then(response => {
+                            this.users.push(response.data.user);
+                        }, () => {
+                            console.log('error');
+                        });
+            },
+            fetchUsers() {
+                this.$http.get('/api/users')
+                        .then(response => {
+                            console.log(response);
+                            this.users = response.data.users;
+                        })
+            }
+        },
         components: {
             UserForm, UserList
+        },
+        created() {
+            this.fetchUsers();
         }
     }
 </script>

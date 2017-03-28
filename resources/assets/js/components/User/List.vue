@@ -10,26 +10,13 @@
     import User from './User.vue';
     export default {
         name: 'user-list',
+        props: ['users'],
         mounted() {
             console.log('Component List mounted.')
         },
         components: { User },
-        data() {
-            return {
-                users: []
-            }
-        },
         methods: {
-            fetchUsers() {
-                this.$http.get('/api/users')
-                        .then(response => {
-                            console.log(response);
-                            this.users = response.data.users;
-                        })
-            }
-        },
-        created() {
-            this.fetchUsers();
+
         }
     }
 </script>

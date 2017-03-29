@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUser;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -17,26 +18,24 @@ class UsersController extends Controller
         return response()->json(['users' => $users]);
     }
 
-    public function store(Request $request)
+    public function store(StoreUser $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email',
-        ]);
-
-        $user = User::create($request->all());
+        try {
+            $user = User::create($request->all());
+        } catch (\Illuminate\Database\QueryException $e) {
+            return response()->json([
+                'message' => "Error",
+                'name' => [$e->getMessage()]
+            ], 400);
+        }
         return response()->json([
             'message' => "Success",
             'user' => $user
         ]);
     }
 
-    public function update(User $user, Request $request)
+    public function update(User $user, StoreUser $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email',
-        ]);
         $user->fill($request->all())->save();
 
         return response()->json([

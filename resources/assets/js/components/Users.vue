@@ -2,12 +2,11 @@
     <div class="container">
         <top-menu></top-menu>
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel-body">
-                    <user-form v-on:formSubmit="processForm" v-bind:user="user"></user-form>
-                </div>
+            <div class="col"></div>
+            <div class="col-5">
+                <user-form v-on:formSubmit="processForm" v-bind:user="user" v-bind:errors="errors"></user-form>
             </div>
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-5">
                 <user-list v-bind:users="users"></user-list>
             </div>
         </div>
@@ -26,11 +25,11 @@
         },
         data: () => ({
             users: [],
+            errors: [],
             user: {}
         }),
         watch: {
             '$route' (to, from) {
-                console.log(this.id);
                 if (!!this.id) {
                     this.user = this.users.find(user => user.id == this.id);
                 }
@@ -50,7 +49,8 @@
                 this.$http.post('/api/users', user)
                         .then(response => {
                             this.users.push(response.data.user);
-                        }, () => {
+                        }, (response) => {
+                            this.errors = response.data;
                             console.log('error');
                         });
             },
@@ -58,7 +58,8 @@
                 this.$http.put('/api/users/' + user.id, user)
                         .then(response => {
                             //this.user = response.data.user;
-                        }, () => {
+                        }, (response) => {
+                            this.errors = response.data;
                             console.log('error');
                         });
             },

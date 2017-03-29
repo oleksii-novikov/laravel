@@ -29,3 +29,8 @@
         }
     }
 </script>
+<style>
+    .navbar {
+        margin-bottom: 20px;
+    }
+</style>

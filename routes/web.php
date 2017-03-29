@@ -10,14 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
+# Vue
+Route::any('{all}', function () {
     return view('index');
-});
-Route::get('/users', function () {
-    return view('index');
-});
+})
+    ->where(['all' => '.*']);
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index');
+//Auth::routes();
+//Route::get('/home', 'HomeController@index');

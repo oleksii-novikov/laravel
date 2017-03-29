@@ -25,7 +25,8 @@ Vue.http.headers.common['X-CSRF-TOKEN', Laravel.csrfToken];
 
 const routes = [
     {path: '/', component: Index, name: 'index'},
-    {path: '/users', component: Users, name: 'users'}
+    {path: '/users', component: Users, name: 'users'},
+    {path: '/users/:id', component: Users, name: 'user', props: true}
 ];
 const router = new VueRouter({
     mode: 'history',

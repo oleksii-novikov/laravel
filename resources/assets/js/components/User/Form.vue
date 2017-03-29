@@ -1,5 +1,5 @@
 <template>
-    <form role="form" method="POST" v-on:submit.prevent="submit" class="form-horizontal">
+    <form role="form" v-on:submit.prevent="submit" class="form-horizontal">
         <div class="form-group">
             <label for="name" class="col-md-4 control-label">Name</label>
             <div class="col-md-6">
@@ -19,7 +19,7 @@
         </div>
         <div class="form-group">
             <div class="col-md-8 col-md-offset-4">
-                <button type="submit" class="btn btn-primary">Create</button>
+                <button type="submit" class="btn btn-primary">Save</button>
             </div>
         </div>
     </form>
@@ -27,18 +27,13 @@
 <script>
     export default {
         name: 'user-form',
+        props: ['user'],
         mounted() {
             console.log('Component Form mounted.')
         },
-        data() {
-            return {
-                user: {
-                    email: 'hunter4@nix.com',
-                    password: 'password',
-                    name: 'hunter4'
-                }
-            }
-        },
+        data: () => ({
+
+        }),
         methods: {
             submit() {
                 this.$emit('formSubmit', this.user);

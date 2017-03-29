@@ -1,6 +1,6 @@
 <template>
     <div class="list">
-        <ul v-if="users.length > 0">
+        <ul v-if="users.length > 0" class="list-group">
             <user v-for="user in users" v-bind:user="user"></user>
         </ul>
         <div v-else>There is no users</div>

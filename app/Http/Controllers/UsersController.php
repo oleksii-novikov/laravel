@@ -30,4 +30,18 @@ class UsersController extends Controller
             'user' => $user
         ]);
     }
+
+    public function update(User $user, Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email',
+        ]);
+        $user->fill($request->all())->save();
+
+        return response()->json([
+            'message' => "Success",
+            'user' => $user
+        ]);
+    }
 }

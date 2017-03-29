@@ -1,5 +1,8 @@
 <template>
-    <li>{{user.email}} - {{user.name}}</li>
+    <li class="list-group-item">
+        {{user.email}} - {{user.name}}
+        <router-link class="btn btn-info edit badge" :to="{ name: 'user', params: { id: user.id }}">Edit</router-link>
+    </li>
 </template>
 <script>
     export default {

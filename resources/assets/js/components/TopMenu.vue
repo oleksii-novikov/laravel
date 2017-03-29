@@ -19,7 +19,7 @@
                         <router-link to="/">Index</router-link>
                     </li>
                     <li>
-                        <router-link :to="'users'">Users</router-link>
+                        <router-link :to="'/users'">Users</router-link>
                     </li>
                 </ul>
 

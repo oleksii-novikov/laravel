@@ -1,5 +1,5 @@
 <template>
-    <form v-on:submit.prevent="submit" class="form-horizontal">
+    <form v-on:submit.prevent="submit" class="form-horizontal jumbotron">
         <div v-bind:class="{'has-danger': errors.name}" class="form-group row">
             <label for="name" class="col-md-4 control-label">Name</label>
             <div class="col-md-8">

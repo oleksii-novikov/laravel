@@ -15,6 +15,7 @@ require('./bootstrap');
 
 import VueResource from 'vue-resource';
 import VueRouter from 'vue-router';
+import store from './store'
 
 import Index from './components/Index.vue';
 import Users from './components/Users.vue';
@@ -34,7 +35,8 @@ const router = new VueRouter({
 });
 
 let app = new Vue({
-    router
+    router,
+    store
 }).$mount("#app");
 
 // let app = new Vue({

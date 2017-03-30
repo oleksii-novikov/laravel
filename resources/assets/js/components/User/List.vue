@@ -14,9 +14,18 @@
 </template>
 <script>
     import User from './User.vue';
+    import { mapGetters } from 'vuex';
+
     export default {
         name: 'user-list',
-        props: ['users'],
+        computed: {
+//            users() {
+//                return this.$store.state.users;
+//            },
+            ...mapGetters({
+                users: 'users'
+            })
+        },
         mounted() {
             console.log('Component List mounted.')
         },

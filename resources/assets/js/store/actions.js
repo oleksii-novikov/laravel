@@ -3,6 +3,7 @@ export default {
         commit('addUser', user)
     },
     updateUser ({ commit }, user) {
+        console.log('updateUser action', user);
         commit('updateUser', user)
     },
     pushUsers ({ commit }, users) {

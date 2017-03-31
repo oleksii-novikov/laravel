@@ -16,10 +16,9 @@ const mutations = {
         state.users.push(user);
     },
     updateUser (state, user) {
-        console.log('USER', user);
-        // let foundIndex = state.users.findIndex(x => x.id == user.id);
-        // state.users[foundIndex] = user;
-        // state.users.find(u => u.id == user.id);
+        let index = state.users.findIndex(x => x.id == user.id);
+        state.users.splice(index, 1, user);
+        // state.users.$set(index, user);
     },
     pushUsers (state, users) {
         state.users.push(...users);

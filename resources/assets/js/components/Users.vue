@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col"></div>
             <div class="col-5">
-                <user-form v-on:formSubmit="processForm" v-bind:user="user" v-bind:errors="errors"></user-form>
+                <user-form @formSubmit="processForm" :user="user" :errors="errors"></user-form>
             </div>
             <div class="col-5">
                 <user-list></user-list>
@@ -31,7 +31,7 @@
         },
         data: () => ({
             errors: [],
-            user: {}
+            user: {id: '', name:'', email:'',password:''}
         }),
         watch: {
             '$route' (to, from) {

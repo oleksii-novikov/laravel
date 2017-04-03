@@ -4,11 +4,13 @@ import actions from './actions'
 Vue.use(Vuex)
 
 const state = {
-    users: []
+    users: [],
+    userErrors: []
 }
 
 const getters = {
-    users: state => state.users
+    users: state => state.users,
+    userErrors: state => state.userErrors,
 }
 
 const mutations = {
@@ -22,7 +24,10 @@ const mutations = {
     },
     pushUsers (state, users) {
         state.users.push(...users);
-    }
+    },
+    setUserErrors (state, errors) {
+        state.userErrors = errors;
+    },
 }
 
 export default new Vuex.Store({

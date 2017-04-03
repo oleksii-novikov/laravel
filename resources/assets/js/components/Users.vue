@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col"></div>
             <div class="col-5">
-                <user-form @formSubmit="processForm" :user="user" :errors="errors"></user-form>
+                <user-form @formSubmit="processForm" :user="user"></user-form>
             </div>
             <div class="col-5">
                 <user-list></user-list>
@@ -23,11 +23,6 @@
         props: ['id'],
         mounted() {
             console.log('Component mounted.')
-        },
-        computed: {
-            ...mapGetters({
-                users: 'users'
-            })
         },
         data: () => ({
             errors: [],
@@ -51,13 +46,7 @@
                 }
             },
             create(user) {
-                this.$http.post('/api/users', user)
-                        .then(response => {
-                            this.$store.dispatch('addUser', response.data.user);
-                        }, (response) => {
-                            this.errors = response.data;
-                            console.log('error');
-                        });
+                this.$store.dispatch('addUser', user);
             },
             update(user) {
                 console.log('user', user);

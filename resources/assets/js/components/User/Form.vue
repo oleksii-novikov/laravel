@@ -29,6 +29,8 @@
     </form>
 </template>
 <script>
+    import { mapGetters } from 'vuex';
+
     export default {
         name: 'user-form',
         props: ['user', 'errors'],
@@ -36,6 +38,11 @@
             return {
                 model: {}
             }
+        },
+        computed: {
+            ...mapGetters({
+                errors: 'userErrors'
+            })
         },
         watch: {
             user: function (to, from) {

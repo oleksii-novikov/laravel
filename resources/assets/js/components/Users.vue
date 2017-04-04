@@ -56,11 +56,7 @@
                 this.$store.dispatch('updateUser', user);
             },
             fetchUsers() {
-                this.$http.get('/api/users')
-                        .then(response => {
-                            console.log(response);
-                            this.$store.dispatch('pushUsers', response.data.users);
-                        })
+                this.$store.dispatch('fetchUsers');
             },
             fetch(id) {
                 this.$http.get('/api/users/{{'+id+'}}')

@@ -17,6 +17,12 @@ export default {
                 commit('setUserErrors', response.data);
             });
     },
+    fetchUsers ({ commit }) {
+        return Vue.http.get('/api/users')
+            .then(response => {
+                commit('pushUsers', response.data.users);
+            });
+    },
     pushUsers ({ commit }, users) {
         commit('pushUsers', users)
     }

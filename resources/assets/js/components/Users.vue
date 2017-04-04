@@ -57,12 +57,6 @@
             },
             fetchUsers() {
                 this.$store.dispatch('fetchUsers');
-            },
-            fetch(id) {
-                this.$http.get('/api/users/{{'+id+'}}')
-                        .then(response => {
-                            console.log(response);
-                        })
             }
         },
         components: {

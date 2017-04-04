@@ -34,7 +34,7 @@
         watch: {
             '$route' (to, from) {
                 if (!!this.id) {
-//                    console.log(this);
+                    this.$store.dispatch('cleanUserErrors');
                     this.user = this.users.find(user => user.id == this.id);
                 }
             }

@@ -25,5 +25,8 @@ export default {
     },
     pushUsers ({ commit }, users) {
         commit('pushUsers', users)
+    },
+    cleanUserErrors ({ commit }) {
+        commit('cleanUserErrors')
     }
 }

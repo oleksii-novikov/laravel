@@ -28,6 +28,9 @@ const mutations = {
     setUserErrors (state, errors) {
         state.userErrors = errors;
     },
+    cleanUserErrors (state) {
+        state.userErrors = [];
+    },
 }
 
 export default new Vuex.Store({

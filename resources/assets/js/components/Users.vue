@@ -28,9 +28,13 @@
             errors: [],
             user: {id: '', name:'', email:'',password:''}
         }),
+        computed: {
+            ...mapGetters(['users'])
+        },
         watch: {
             '$route' (to, from) {
                 if (!!this.id) {
+//                    console.log(this);
                     this.user = this.users.find(user => user.id == this.id);
                 }
             }
@@ -49,14 +53,7 @@
                 this.$store.dispatch('addUser', user);
             },
             update(user) {
-                console.log('user', user);
-                this.$http.put('/api/users/' + user.id, user)
-                        .then(response => {
-                            this.$store.dispatch('updateUser', response.data.user);
-                        }, (response) => {
-                            this.errors = response.data;
-                            console.log('error');
-                        });
+                this.$store.dispatch('updateUser', user);
             },
             fetchUsers() {
                 this.$http.get('/api/users')

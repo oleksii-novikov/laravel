@@ -10,8 +10,12 @@ export default {
             });
     },
     updateUser ({ commit }, user) {
-        console.log('updateUser action', user);
-        commit('updateUser', user)
+        return Vue.http.put('/api/users/' + user.id, user)
+            .then(response => {
+                commit('updateUser', response.data.user);
+            }, (response) => {
+                commit('setUserErrors', response.data);
+            });
     },
     pushUsers ({ commit }, users) {
         commit('pushUsers', users)

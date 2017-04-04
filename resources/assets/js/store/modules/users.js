@@ -1,6 +1,18 @@
 import Vue from 'vue'
+import Vuex from 'vuex'
+Vue.use(Vuex)
 
-export default {
+const state = {
+    users: [],
+    errors: []
+}
+
+const getters = {
+    users: state => state.users,
+    userErrors: state => state.errors,
+}
+
+const actions = {
     addUser ({ commit }, user) {
         return Vue.http.post('/api/users', user)
             .then(response => {
@@ -29,4 +41,31 @@ export default {
     cleanUserErrors ({ commit }) {
         commit('cleanUserErrors')
     }
+};
+
+const mutations = {
+    addUser (state, user) {
+        state.users.push(user);
+    },
+    updateUser (state, user) {
+        let index = state.users.findIndex(x => x.id == user.id);
+        state.users.splice(index, 1, user);
+        // state.users.$set(index, user);
+    },
+    pushUsers (state, users) {
+        state.users.push(...users);
+    },
+    setUserErrors (state, errors) {
+        state.errors = errors;
+    },
+    cleanUserErrors (state) {
+        state.errors = [];
+    },
+}
+
+export default {
+    state,
+    getters,
+    actions,
+    mutations
 }
